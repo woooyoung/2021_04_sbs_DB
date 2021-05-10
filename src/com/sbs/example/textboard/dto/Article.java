@@ -7,8 +7,11 @@ public class Article {
 	public int id;
 	public LocalDateTime regDate;
 	public LocalDateTime updateDate;
+	public int memberId;
 	public String title;
 	public String body;
+
+	public String extra__writer;
 
 	public Article(int id, LocalDateTime regDate, LocalDateTime updateDate, String title, String body) {
 		this.id = id;
@@ -26,16 +29,21 @@ public class Article {
 
 	public Article(Map<String, Object> articleMap) {
 		this.id = (int) articleMap.get("id");
-		this.title = (String) articleMap.get("title");
-		this.body = (String) articleMap.get("body");
 		this.regDate = (LocalDateTime) articleMap.get("regDate");
 		this.updateDate = (LocalDateTime) articleMap.get("updateDate");
+		this.memberId = (int) articleMap.get("memberId");
+		this.title = (String) articleMap.get("title");
+		this.body = (String) articleMap.get("body");
+
+		if (articleMap.get("extra__writer") != null) {
+			this.extra__writer = (String) articleMap.get("extra__writer");
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", title=" + title
-				+ ", body=" + body + "]";
+		return "Article [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", memberId=" + memberId
+				+ ", title=" + title + ", body=" + body + ", extra__writer=" + extra__writer + "]";
 	}
 
 }

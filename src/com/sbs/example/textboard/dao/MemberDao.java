@@ -1,6 +1,5 @@
 package com.sbs.example.textboard.dao;
 
-import java.sql.Connection;
 import java.util.Map;
 
 import com.sbs.example.textboard.Container;
