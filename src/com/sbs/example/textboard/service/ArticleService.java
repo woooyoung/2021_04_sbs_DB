@@ -1,6 +1,8 @@
 package com.sbs.example.textboard.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sbs.example.textboard.Container;
 import com.sbs.example.textboard.dao.ArticleDao;
@@ -26,7 +28,7 @@ public class ArticleService {
 		articleDao.delete(id);
 	}
 
-	public Article getArticleById(int id) {
+	public Article getForPrintArticleById(int id) {
 		return articleDao.getArticleById(id);
 	}
 
@@ -34,8 +36,20 @@ public class ArticleService {
 		articleDao.update(id, title, body);
 	}
 
-	public List<Article> getArticles() {
-		return articleDao.getArticles();
+	public List<Article> getForPrintArticles(int page, int itemsInPage, String searchKeyword) {
+		int limitFrom = (page - 1) * itemsInPage;
+		int limitTake = itemsInPage;
+
+		Map<String, Object> args = new HashMap<>();
+		args.put("searchKeyword", searchKeyword);
+		args.put("limitFrom", limitFrom);
+		args.put("limitTake", limitTake);
+
+		return articleDao.getArticles(args);
+	}
+
+	public void increaseHit(int id) {
+		articleDao.increaseHit(id);
 	}
 
 }

@@ -83,7 +83,7 @@ public class App {
 		} else if (cmd.startsWith("article modify ")) {
 			articleController.modify(cmd);
 
-		} else if (cmd.equals("article list")) {
+		} else if (cmd.startsWith("article list")) {
 			articleController.showList(cmd);
 
 		} else if (cmd.equals("system exit")) {
